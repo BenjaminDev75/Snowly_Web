@@ -1,0 +1,14 @@
+
+
+Projet A faire : 
+
+Association : Membre / Don / Projet / Pays 
+
+Le bon coin des enfants : Enfant, Objet , Echange , Categorie 
+
+Cabinet Medical : Patient, Vaccin, Rdv, Type Vaccin, Infermier
+
+- Les images en IA. 
+- Les formulaires d'insertion en IA 
+- Les tableaux d'affichage en Boostrapp (IA)
+
