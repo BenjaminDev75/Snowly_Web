@@ -97,13 +97,13 @@ $checkout = isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : '';
                             <input type="email" class="form-control" id="email" name="email" placeholder="Votre email" required>
                         </div>
                         <div class="mb-3">
-    <label for="checkin" class="form-label">Date d'arrivée</label>
-    <input type="date" class="form-control" id="checkin" name="checkin" value="<?php echo isset($_GET['checkin']) ? htmlspecialchars($_GET['checkin']) : ''; ?>" required>
-</div>
-<div class="mb-3">
-    <label for="checkout" class="form-label">Date de départ</label>
-    <input type="date" class="form-control" id="checkout" name="checkout" value="<?php echo isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : ''; ?>" required>
-</div>
+                            <label for="checkin" class="form-label">Date d'arrivée</label>
+                            <input type="date" class="form-control" id="checkin" name="checkin" value="<?php echo isset($_GET['checkin']) ? htmlspecialchars($_GET['checkin']) : ''; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="checkout" class="form-label">Date de départ</label>
+                            <input type="date" class="form-control" id="checkout" name="checkout" value="<?php echo isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : ''; ?>" required>
+                        </div>
                         <div class="mb-3">
                             <label for="guests" class="form-label">Nombre de personnes</label>
                             <input type="number" class="form-control" id="guests" name="guests" placeholder="Nombre de personnes" min="1" required>
@@ -115,16 +115,7 @@ $checkout = isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : '';
                             <span id="total-price">0 €</span>
                         </div>
 
-                        <!-- Message de réduction -->
-                        <div id="discount-message" style="display: none; color: green;">
-                            <p><strong>Merci pour votre fidélité ! Vous bénéficiez de 5% de réduction sur cet appartement.</strong></p>
-                        </div>
 
-                        <!-- Affichage du prix après réduction -->
-                        <div class="total-price">
-                            <label for="discounted-price">Prix après réduction :</label>
-                            <span id="discounted-price">0 €</span>
-                        </div>
 
                         <input type="hidden" id="hidden-total-price" name="total_price" value="0">
 
@@ -186,16 +177,11 @@ $checkout = isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : '';
 
         // Calcul du prix total
         const totalPrice = nights * pricePerNight;
-        const discount = 0.05; // 5% de réduction
-        const discountedPrice = totalPrice * (1 - discount);
 
         // Mettre à jour l'affichage
         totalPriceElement.textContent = totalPrice.toFixed(2) + ' €';
-        discountedPriceElement.textContent = discountedPrice.toFixed(2) + ' €';
 
-        // Afficher le message de réduction
-        discountMessage.style.display = 'block';
-        hiddenTotalPrice.value = discountedPrice.toFixed(2);
+        hiddenTotalPrice.value = totalPrice.toFixed(2);
     }
 
     // Ajouter des événements pour recalculer lorsque les dates changent

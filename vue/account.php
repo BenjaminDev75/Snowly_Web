@@ -157,10 +157,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <h5><?php echo number_format($totalDepense, 2, ',', ' '); ?>€</h5>
                         <p>Total Dépensé</p>
                     </div>
-                    <div class="col-md-4">
-                        <h5>2 ans</h5>
-                        <p>Fidélité</p>
-                    </div>
                 </div>
                 <!-- Formulaire de mise à jour -->
                 <form method="post" class="mt-4">

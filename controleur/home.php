@@ -335,7 +335,6 @@ $featured_testimonials = array_map(fn($key) => $testimonials[$key], $random_keys
                 </div>
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </form>
-        <!--    <a href="index.php?page=13"> Voir tout les appartement disponible </a> -->
         </div>
     </div>
 </section>

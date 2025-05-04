@@ -78,7 +78,6 @@
     </form>
     <div class="form-footer">
         <p>Pas encore de compte ? <a href="vue/vue_inscription.php">Inscrivez-vous</a></p>
-        <!--<p><a href="vue/vue_mdpOublie.php">Mot de Passe oublié ? </a></p>-->
     </div>
 </div>
 
