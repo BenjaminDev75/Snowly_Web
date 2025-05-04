@@ -128,9 +128,6 @@ $checkout = isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : '';
 
                         <input type="hidden" id="hidden-total-price" name="total_price" value="0">
 
-
-                        <input type="hidden" id="hidden-total-price" name="total_price" value="0">
-
                         <button type="submit" class="btn btn-submit w-100">Valider la réservation</button>
                     </form>
                 </div>
@@ -148,66 +145,65 @@ $checkout = isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : '';
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+    // Récupérer les éléments du formulaire
+    const checkinInput = document.getElementById('checkin');
+    const checkoutInput = document.getElementById('checkout');
+    const totalPriceElement = document.getElementById('total-price');
+    const hiddenTotalPrice = document.getElementById('hidden-total-price'); // Le champ caché pour le prix total
+    const pricePerNight = parseFloat(<?php echo json_encode($apartment['Tarif']); ?>) || 0; // Sécurisation du tarif
+    const discountMessage = document.getElementById('discount-message'); // Message de réduction
+    const discountedPriceElement = document.getElementById('discounted-price'); // Le prix après réduction
 
-    <script>
-        // Récupérer les éléments du formulaire
-        const checkinInput = document.getElementById('checkin');
-        const checkoutInput = document.getElementById('checkout');
-        const totalPriceElement = document.getElementById('total-price');
-        const hiddenTotalPrice = document.getElementById('hidden-total-price'); // Le champ caché pour le prix total
-        const pricePerNight = <?php echo json_encode($apartment['Tarif']); ?>; // Le prix par nuit en PHP
-        const discountMessage = document.getElementById('discount-message'); // Message de réduction
-        const discountedPriceElement = document.getElementById('discounted-price'); // Le prix après réduction
+    // Fonction pour réinitialiser les prix
+    function resetPrices() {
+        totalPriceElement.textContent = '0 €';
+        discountedPriceElement.textContent = '0 €';
+        discountMessage.style.display = 'none'; // Masquer le message de réduction
+        hiddenTotalPrice.value = '0';
+    }
 
-        // Fonction pour calculer le nombre de nuits et le prix total
-        function calculateTotalPrice() {
+    // Fonction pour calculer le nombre de nuits et le prix total
+    function calculateTotalPrice() {
+        // Vérifier si les champs sont remplis
+        if (!checkinInput.value || !checkoutInput.value) {
+            resetPrices();
+            return;
+        }
+
         const checkinDate = new Date(checkinInput.value);
         const checkoutDate = new Date(checkoutInput.value);
 
         // Vérifier si les dates sont valides
-        if (checkinDate && checkoutDate && checkoutDate > checkinDate) {
+        if (isNaN(checkinDate.getTime()) || isNaN(checkoutDate.getTime()) || checkoutDate <= checkinDate) {
+            resetPrices();
+            return;
+        }
+
         // Calcul du nombre de nuits
         const timeDiff = checkoutDate - checkinDate; // Différence en millisecondes
         const nights = timeDiff / (1000 * 3600 * 24); // Convertir en jours
 
-        // Si le nombre de nuits est positif, calculer le prix total
-        if (nights > 0) {
+        // Calcul du prix total
         const totalPrice = nights * pricePerNight;
-
-        // Appliquer une réduction de 5% si applicable
-        const discount = 0.05;
+        const discount = 0.05; // 5% de réduction
         const discountedPrice = totalPrice * (1 - discount);
 
-        // Mettre à jour l'élément du prix total
+        // Mettre à jour l'affichage
         totalPriceElement.textContent = totalPrice.toFixed(2) + ' €';
         discountedPriceElement.textContent = discountedPrice.toFixed(2) + ' €';
 
         // Afficher le message de réduction
-        discountMessage.style.display = 'block'; // Afficher le message
+        discountMessage.style.display = 'block';
         hiddenTotalPrice.value = discountedPrice.toFixed(2);
-    } else {
-        // Si le nombre de nuits est <= 0, afficher un prix de 0
-        totalPriceElement.textContent = '0 €';
-        discountedPriceElement.textContent = '0 €';
-        discountMessage.style.display = 'none'; // Masquer le message de réduction
-        hiddenTotalPrice.value = '0';
-    }
-    } else {
-        // Si les dates sont invalides, afficher un prix de 0
-        totalPriceElement.textContent = '0 €';
-        discountedPriceElement.textContent = '0 €';
-        discountMessage.style.display = 'none'; // Masquer le message de réduction
-        hiddenTotalPrice.value = '0';
-    }
     }
 
-        // Ajouter des événements pour recalculer lorsque les dates changent
-        checkinInput.addEventListener('change', calculateTotalPrice);
-        checkoutInput.addEventListener('change', calculateTotalPrice);
+    // Ajouter des événements pour recalculer lorsque les dates changent
+    checkinInput.addEventListener('input', calculateTotalPrice);
+    checkoutInput.addEventListener('input', calculateTotalPrice);
 
-        // Appeler la fonction au chargement pour initialiser le prix total si les dates sont déjà présentes
-        document.addEventListener('DOMContentLoaded', calculateTotalPrice);
-
+    // Appeler la fonction au chargement pour initialiser le prix total si les dates sont déjà présentes
+    document.addEventListener('DOMContentLoaded', calculateTotalPrice);
 </script>
 
 

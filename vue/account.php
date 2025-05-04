@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <!-- Avatar Utilisateur -->
                 <div class="text-center">
                     <div class="profile-avatar">
-                        <img src="uploads/default-avatar.png" alt="Avatar Utilisateur">
+                        <img src="images/default-avatar.png" alt="Avatar Utilisateur">
                     </div>
                     <h2 class="mt-3">Bonjour, <?php echo htmlspecialchars($user['prenom']); ?>!</h2>
                     <p class="text-muted">Voici vos informations personnelles.</p>
@@ -171,10 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
                     <?php endif; ?>
 
-                    <div class="mb-3">
-                        <label for="avatar" class="form-label">Photo de Profil</label>
-                        <input type="file" class="form-control" id="avatar" name="avatar">
-                    </div>
+
                     <div class="mb-3">
                         <label for="nom" class="form-label">Nom</label>
                         <input type="text" class="form-control" id="nom" name="nom"

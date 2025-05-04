@@ -315,12 +315,7 @@ $checkout = isset($_GET['checkout']) ? htmlspecialchars($_GET['checkout']) : '';
             <option value="3" <?= (isset($_GET['capacity']) && $_GET['capacity'] == '3') ? 'selected' : '' ?>>3 personnes</option>
             <option value="4" <?= (isset($_GET['capacity']) && $_GET['capacity'] == '4') ? 'selected' : '' ?>>4 personnes</option>
         </select>
-        <select name="type">
-            <option value="">Type d'appartement</option>
-            <option value="appartement" <?= (isset($_GET['type']) && $_GET['type'] == 'appartement') ? 'selected' : '' ?>>Appartement</option>
-            <option value="maison" <?= (isset($_GET['type']) && $_GET['type'] == 'maison') ? 'selected' : '' ?>>Maison</option>
-            <option value="studio" <?= (isset($_GET['type']) && $_GET['type'] == 'studio') ? 'selected' : '' ?>>Studio</option>
-        </select>
+
         <button type="submit">Rechercher</button>
     </form>
 </div>

@@ -294,7 +294,7 @@ $testimonials = [
 $random_keys = array_rand($testimonials, 3);
 $featured_testimonials = array_map(fn($key) => $testimonials[$key], $random_keys);
 
-    ?>
+?>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -335,7 +335,7 @@ $featured_testimonials = array_map(fn($key) => $testimonials[$key], $random_keys
                 </div>
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </form>
-            <a href="index.php?page=13"> Voir tout les appartement disponible </a>
+        <!--    <a href="index.php?page=13"> Voir tout les appartement disponible </a> -->
         </div>
     </div>
 </section>

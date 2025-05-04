@@ -66,7 +66,11 @@ $totalPages = ceil($totalReservations / $limite);
                                     <h5 class="card-title"><?php echo htmlspecialchars($reservation['Nom_Immeuble']); ?></h5>
                                     <p class="card-text">Date : <?php echo htmlspecialchars($reservation['DateDebut']); ?> - <?php echo htmlspecialchars($reservation['DateFin']); ?></p>
                                     <p class="card-text">Montant Total : <?php echo number_format($reservation['Montant_Total'], 2, ',', ''); ?>€</p>
-                                 <!--   <a href="reservation_details.php?id=<?php //echo $reservation['ID_Reservation']; ?>" class="btn btn-primary">Voir les détails</a>-->
+                                    <?php if (!empty($reservation['facture'])): ?>
+                                        <a href="<?= htmlspecialchars($reservation['facture']); ?>" class="button" target="_blank">Voir Facture</a>
+                                    <?php else: ?>
+                                        <button disabled>Aucune Facture</button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

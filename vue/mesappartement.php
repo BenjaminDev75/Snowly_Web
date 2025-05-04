@@ -103,6 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
+        $sql2="insert into contrat values(null, $last_id,$proprietaire,curdate(),'Actif',(Year(curdate())));";
+        mysqli_query($conn, $sql2);
+
         echo "Appartement ajouté avec succès!";
     } else {
         echo "Erreur d'insertion de l'appartement : " . mysqli_error($conn);
@@ -275,7 +278,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-<!-- Ajout manuel d'équipements -->
+<!-- Ajout manuel d'équipements
 <div class="mt-4">
     <div class="p-3 border rounded bg-white shadow-sm">
         <label for="equipement_perso" class="form-label">
@@ -283,8 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </label>
         <input type="text" class="form-control mt-2" id="equipement_perso" name="equipement_perso" placeholder="Ex: Lave-vaisselle">
     </div>
-</div>
-
+</div>-->
 
 
 
@@ -325,19 +327,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h5>Contrat de location</h5>
                 <hr>
                 <p>
-                    Ce contrat de location (ci-après le "Contrat") est conclu entre le locataire (ci-après le "Locataire") et le propriétaire de l'appartement (ci-après le "Propriétaire"). En cochant cette case, le Locataire accepte d'être lié par les termes et conditions de ce Contrat.
+                    Ce contrat de location (ci-après le "Contrat") est conclu entre l'entreprise (ci-après le "Neige & Soleil") et le propriétaire de l'appartement (ci-après le "Propriétaire"). En cochant cette case, le Locataire accepte d'être lié par les termes et conditions de ce Contrat.
                 </p>
                 <ol>
                     <li><strong>Durée de la location</strong>: La durée de la location est d'un an. Le Contrat prend effet à la date de signature.</li>
                     <li><strong>Usage du bien</strong>: Le bien loué doit être utilisé uniquement à des fins de loisirs.</li>
                     <li><strong>Sous-location</strong>: Le Locataire n'est pas autorisé à sous-louer l'appartement.</li>
-                    <li><strong>Entretien et réparations</strong>: Le Locataire sera responsable de l'entretien régulier de l'appartement et des réparations mineures.</li>
+                    <li><strong>Entretien et réparations</strong>: Le Propriétaire sera responsable de l'entretien régulier de l'appartement et des réparations mineures.</li>
                     <li><strong>Equipement</strong>: L'appartement est fourni avec des équipements tels que décrits dans l'annonce de location.</li>
                     <li><strong>Paiement</strong>: Le Locataire est responsable du paiement du loyer dans les délais convenus.</li>
-                    <li><strong>Résiliation</strong>: En cas de violation de l'une des conditions énumérées dans le présent Contrat, le Propriétaire a le droit de résilier le Contrat avec effet immédiat.</li>
+                    <li><strong>Résiliation</strong>: En cas de violation de l'une des conditions énumérées dans le présent Contrat, le Neige & Soleil se donne le droit de résilier le Contrat avec effet immédiat.</li>
                 </ol>
                 <p>
-                    En cochant cette case, le Locataire confirme avoir lu, compris et accepté les termes et conditions énoncés dans le présent Contrat.
+                    En cochant cette case, le Propriétaire confirme avoir lu, compris et accepté les termes et conditions énoncés dans le présent Contrat.
                 </p>
             </div>
             <div class="modal-footer">
